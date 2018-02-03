@@ -38,6 +38,18 @@ public:
 	bool isLeaf(TrieNode* node){
 		return node->isEnd == true;
 	}
+	/** Returns if there is any word in the trie that starts with the given prefix. */
+	bool startsWith(string prefix) { //208. Implement Trie (Prefix Tree)
+		if(root == NULL) return false;
+
+        for(int i = 0; i < prefix.length(); ++i){
+			int index = tolower(prefix[i]) - 'a';
+			if(root->children[index] == NULL)
+				return false;
+			root = root->children[index];
+		}
+		return true ;
+    }
 
 private:
 	TrieNode *root;
@@ -74,10 +86,10 @@ private:
 		return false;
 	}
 	bool delete_helper(TrieNode * node, string key, int level, int len){
-		if(!node) return false;
+		if(node == NULL) return false;
 
 		if(level == len){
-			if(isLeaf(node)){ // exist key
+			if(isLeaf(node)){ // exist key, isEnd = true
 				node->isEnd = false;
 				{
 					if(isFreeNode(node)) //no children , then delete at caller
@@ -90,17 +102,18 @@ private:
 		else{
 			int index = tolower(key[level]) - 'a';
 			if(delete_helper(node->children[index], key, level + 1, len)){
-				remove(node->children[index]);
+				remove(node->children[index]); //delete
+				node->children[index] = NULL; // have to be
 				return (!isLeaf(node) && isFreeNode(node)); //  // recursively climb up, and delete eligible nodes
 			}
 			else return false;
 		}
 	}
-	bool isFreeNode(TrieNode * node){
-		if(!node) return false;
+	bool isFreeNode(TrieNode * node){ //node children
+		if(node == NULL) return false;
 
 		for (int i = 0; i < ALPHABET_SIZE; ++i)
-			if(node->children[i]) return false;
+			if(node->children[i] != NULL) return false;
 		return true;
 	}
 
@@ -108,11 +121,16 @@ private:
 		remove(root);
 	}
 	void remove(TrieNode * node){
-		if(!node) return;
+		if(node == NULL) return;
+		// cout << "\nSTART Remove~~~~~~~" << endl;
 		for(int i = 0; i < ALPHABET_SIZE; ++i){
-			remove(node->children[i]);
+			// cout << "\nSTART Remove~~~~~~~" << (char)('a' + i)<< endl;
+			if(node->children[i] != NULL)
+				remove(node->children[i]);
+				// {cout << "exists" << endl;remove(node->children[i]);}
 		}
-		delete node;
+		TrieNode *tmp = node;
+		delete tmp;
 		node = NULL;
 	}
 

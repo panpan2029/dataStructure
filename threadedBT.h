@@ -3,6 +3,9 @@
 * https://www.geeksforgeeks.org/threaded-binary-tree-insertion/
 * https://www.geeksforgeeks.org/convert-binary-tree-threaded-binary-tree/
   Convert a Binary Tree to Threaded binary tree | Set 1 (Using Queue)
+
+ * !node doesn't work, have to be node == NULL
+ * remove() have to check before go into node->left, even I check the base case(NULL), might cause not typle of Node* node?
 *****************************/
 #ifndef TREADED_H
 #define TREADED_H 

@@ -200,6 +200,22 @@ public:
 
 
 int main(){
+	//test tries
+	vector<string> strs{"she", "sells", "sea", "shore", "the", "by", "sheer"};
+	Trie trie;
+	for(auto s : strs)
+		trie.insert(s);
+	// trie.deleteKey(strs[0]);
+	trie.deleteKey(strs[5]);
+	trie.deleteKey(strs[3]);
+	trie.deleteKey(strs[2]);
+	for(auto s : strs)
+		cout << trie.search(s) << ' ';
+
+	// cout << "main works\n";
+	return 0;
+
+
 	//test threaded BST
 	ThreadedBST<int> tbst;
 	vector<int> v10;
@@ -217,15 +233,7 @@ int main(){
 	tbst.inorder_print();
 	return 0;
 
-	//test tries
-	vector<string> strs{"she", "sells", "sea", "shore", "the", "by", "sheer"};
-	Trie trie;
-	for(auto s : strs)
-		trie.insert(s);
-	trie.deleteKey(strs[0]);
-	for(auto s : strs)
-		cout << trie.search(s) << ' ';
-	return 0;
+	
 	//load a dict and compute adjacent words(only one character different)
 	CPUTimer c_t;
 	vector<string>  dict;
