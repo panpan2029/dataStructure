@@ -103,7 +103,7 @@ private:
 			int index = tolower(key[level]) - 'a';
 			if(delete_helper(node->children[index], key, level + 1, len)){
 				remove(node->children[index]); //delete
-				node->children[index] = NULL; // have to be
+				node->children[index] = NULL; // have to be, or else double delete when call ~Trie
 				return (!isLeaf(node) && isFreeNode(node)); //  // recursively climb up, and delete eligible nodes
 			}
 			else return false;

@@ -3,6 +3,7 @@
 #include "../CPUTimer.h"
 #include "trie.h"
 #include "threadedBT.h"
+#include "unionFind.h"
 using namespace std;
 
 
@@ -200,6 +201,7 @@ public:
 
 
 int main(){
+	UnionFind un(5);
 	//test tries
 	vector<string> strs{"she", "sells", "sea", "shore", "the", "by", "sheer"};
 	Trie trie;
