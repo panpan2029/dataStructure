@@ -3,6 +3,7 @@
 #include "../CPUTimer.h"
 #include "trie.h"
 #include "threadedBT.h"
+#include "segTree.h"
 #include "unionFind.h"
 using namespace std;
 
@@ -201,6 +202,16 @@ public:
 
 
 int main(){
+
+	//test segment tree
+	vector<int> v1{-1,0,1,2,3,-1};
+	segmentTree s{v1};
+	cout << s.query(0,3) << endl;
+	s.update(1, 5);
+	cout << s.query(0,3) << endl;
+	return 0;
+
+
 	UnionFind un(5);
 	//test tries
 	vector<string> strs{"she", "sells", "sea", "shore", "the", "by", "sheer"};
