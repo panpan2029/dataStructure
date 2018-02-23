@@ -205,10 +205,14 @@ int main(){
 
 	//test segment tree
 	vector<int> v1{-1,0,1,2,3,-1};
-	segmentTree s{v1};
-	cout << s.query(0,3) << endl;
-	s.update(1, 5);
-	cout << s.query(0,3) << endl;
+	// segmentTree s{v1};
+	indexTree it{v1};
+	// cout << "segment tree: "<< s.query(0,3) << endl;
+	// cout << "indexex tree: "<< it.sum(0,3) << endl;
+	// s.update(1, 5);
+	// it.update(1, 5);
+	// cout << "segment tree: " << s.query(0,3) << endl;
+	cout << "indexex tree: "<< it.sum(1,3) << endl;
 	return 0;
 
 
