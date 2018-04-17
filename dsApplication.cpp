@@ -1,5 +1,6 @@
 #include "../yuanHeadAll.h"
 #include "../yuanFun.h"
+#include "../yuanLib.h"
 #include "../CPUTimer.h"
 #include "trie.h"
 #include "threadedBT.h"
@@ -202,9 +203,11 @@ public:
 
 
 int main(){
-
 	//test segment tree
-	vector<int> v1{-1,0,1,2,3,-1};
+	vector<int> v1{-1,0,1,2,3,5};
+	segTree_min qmin(v1);
+	cout << qmin.query(3,v1.size()-1) << endl;
+	return 0;
 	// segmentTree s{v1};
 	indexTree it{v1};
 	// cout << "segment tree: "<< s.query(0,3) << endl;
@@ -214,6 +217,28 @@ int main(){
 	// cout << "segment tree: " << s.query(0,3) << endl;
 	cout << "indexex tree: "<< it.sum(1,3) << endl;
 	return 0;
+	
+
+    int k = 3, n = 2;
+    int M = (int)pow(k, n-1);
+    int P[M * k];
+    for (int i = 0; i < k; ++i)
+            for (int q = 0; q < M; ++q)
+                P[i*M + q] = q*k + i;
+    vector<int> pv(P, P+M * k);
+    cout << pv << endl;
+	return 0;
+	vector<pair<int,int>> edges{{0,1},{1,2},{1,3},{1,4},{2,4},{2,5},{3,6},{4,6},{4,7},{5,4},{5,7},{7,6}};
+	vector<pair<int,int>> edges2{{0,1},{1,2},{2,0},{1,3},{3,4},{4,1}};
+	Graph myGraph(edges);
+	// myGraph.print();
+	Graph myGraph2(edges2);
+	myGraph2.print();
+	myGraph2.printCircuit();
+	// myGraph2.topologicalSort();
+
+	return 0;
+	
 
 
 	UnionFind un(5);
